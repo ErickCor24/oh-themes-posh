@@ -1,0 +1,146 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 3,
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "diamond",
+          "background": "#0D0D0D",
+          "foreground": "#00FF9C",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b0",
+          "template": " {{ .Icon }} "
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#0A1628",
+          "foreground": "#4FC3F7",
+          "template": " \uf007 {{ .UserName }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#0D2137",
+          "foreground": "#00D9FF",
+          "template": " \uf07c {{ .Path }} ",
+          "properties": {
+            "style": "agnoster_short",
+            "max_depth": 4
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#0A1F0A",
+          "foreground": "#39FF14",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#1F1200{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#1F0A0A{{ end }}",
+            "{{ if gt .Ahead 0 }}#0A1F0A{{ end }}"
+          ],
+          "foreground_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#FF9F00{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#FF4444{{ end }}"
+          ],
+          "template": " \ue0a0 {{ .HEAD }}{{ if .Working.Changed }} \uf111 {{ .Working.Added }}+{{ .Working.Deleted }}-{{ end }}{{ if .Staging.Changed }} \uf46a {{ .Staging.String }}{{ end }}{{ if gt .Ahead 0 }} \uf55c {{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} \uf55b {{ .Behind }}{{ end }} ",
+          "properties": {
+            "fetch_status": true
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#130D1F",
+          "foreground": "#B48EFF",
+          "template": " \uf252 {{ .FormattedMs }} ",
+          "properties": {
+            "threshold": 2000,
+            "style": "austin"
+          }
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "background": "#001F0D",
+          "foreground": "#39FF14",
+          "background_templates": [
+            "{{ if gt .Code 0 }}#1F0000{{ end }}"
+          ],
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}#FF3333{{ end }}"
+          ],
+          "trailing_diamond": "\ue0b4",
+          "template": "{{ if gt .Code 0 }} \uf00d {{ .Code }} {{ else }} \uf00c {{ end }}",
+          "properties": {
+            "always_enabled": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "right",
+      "segments": [
+        {
+          "type": "python",
+          "style": "plain",
+          "foreground": "#FF79C6",
+          "template": "\ue235 {{ if .Venv }}{{ .Venv }} · {{ end }}{{ .Full }} ",
+          "properties": {
+            "display_mode": "environment",
+            "fetch_version": true
+          }
+        },
+        {
+          "type": "node",
+          "style": "plain",
+          "foreground": "#68A063",
+          "template": "\ue718 {{ .Full }} ",
+          "properties": {
+            "display_mode": "files",
+            "fetch_version": true
+          }
+        },
+        {
+          "type": "dotnet",
+          "style": "plain",
+          "foreground": "#7B68EE",
+          "template": "\ue77f {{ .Full }} ",
+          "properties": {
+            "display_mode": "files",
+            "fetch_version": true
+          }
+        },
+        {
+          "type": "time",
+          "style": "plain",
+          "foreground": "#444466",
+          "template": "\uf017 {{ .CurrentDate | date \"15:04\" }} "
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#00FF9C",
+          "template": "\u276f\u276f "
+        }
+      ]
+    }
+  ]
+}

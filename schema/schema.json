@@ -1,0 +1,85 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 3,
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "os",
+          "style": "diamond",
+          "background": "#1C1C1C",
+          "foreground": "#FFFFFF",
+          "leading_diamond": "\ue0b6",
+          "trailing_diamond": "\ue0b0",
+          "template": " {{ .Icon }} "
+        },
+        {
+          "type": "session",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#2D2D2D",
+          "foreground": "#AAAAAA",
+          "template": " {{ .UserName }}@{{ .HostName }} "
+        },
+        {
+          "type": "path",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#3A3A3A",
+          "foreground": "#67AEFF",
+          "template": " \uf07c {{ .Path }} ",
+          "properties": {
+            "style": "folder",
+            "max_depth": 3
+          }
+        },
+        {
+          "type": "git",
+          "style": "powerline",
+          "powerline_symbol": "\ue0b0",
+          "background": "#444444",
+          "foreground": "#ff9900",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#834424{{ end }}",
+            "{{ if and (gt .Ahead 0) (gt .Behind 0) }}#7A4F01{{ end }}",
+            "{{ if gt .Ahead 0 }}#4A4A10{{ end }}"
+          ],
+          "template": " \ue0a0 {{ .HEAD }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }} ",
+          "properties": {
+            "fetch_status": true
+          }
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "background": "#2ECC71",
+          "foreground": "#1C1C1C",
+          "background_templates": [
+            "{{ if gt .Code 0 }}#E74C3C{{ end }}"
+          ],
+          "trailing_diamond": "\ue0b4",
+          "template": " {{ if gt .Code 0 }}\uf00d {{ .Code }}{{ else }}\uf00c{{ end }} ",
+          "properties": {
+            "always_enabled": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "#555555",
+          "template": "\u276f "
+        }
+      ]
+    }
+  ]
+}
